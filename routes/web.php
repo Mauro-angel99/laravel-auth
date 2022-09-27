@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::get('/admin', 'Admin/HomeController@index')->middleware('auth')->name('admin.home');
 
-route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
-    route::get('/', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::resource('posts', 'PostController');
 });
 
-route::get("{any?}", function() {
+Route::get("{any?}", function() {
     return view('guest.home');
 })->where("any", ".*");
