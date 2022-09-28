@@ -2,9 +2,18 @@
 
 @section('content')
 
+@if (session('message'))
+<div class="text-center alert alert-{{ session('type') ?? 'info' }}">
+    {{ session('message') }}
+</div>
+@endif
+
 <header>
-    <div class="container">
+    <div class="container d-flex justify-content-between">
         <h1>Posts</h1>
+        <a href="{{ route('admin.posts.create') }}">
+            <button class="btn-success">Aggiungi post</button>
+        </a>
     </div>
 </header>
 <main>
@@ -28,10 +37,18 @@
                     <td>{{ $post->slug }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>{{ $post->updated_at }}</td>
-                    <td>
+                    <td class="d-flex justify-content-around">
                         <a href="{{ route('admin.posts.show', $post) }}">
                             <button class="btn-primary">Vedi</button>
                         </a>
+                        <a href="{{ route('admin.posts.edit', $post) }}">
+                            <button class="btn-warning">Modifica</button>
+                        </a>
+                        <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn-danger" type="submit">Elimina</button>
+                        </form>
                     </td>
                 </tr>
                 @empty
