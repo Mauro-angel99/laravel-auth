@@ -23,6 +23,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Titolo</th>
+                    <th scope="col">Categoria</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Creato il</th>
                     <th scope="col">Modificato il</th>
@@ -34,6 +35,11 @@
                 <tr>
                     <th scope="row">{{ $post->id }}</th>
                     <td>{{ $post->title }}</td>
+                    @if($post->category)
+                    <td>{{ $post->category->label }}</td>
+                    @else
+                    <td></td>
+                    @endif
                     <td>{{ $post->slug }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>{{ $post->updated_at }}</td>
