@@ -23,6 +23,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Titolo</th>
+                    <th scope="col">Autore</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Creato il</th>
@@ -35,6 +36,7 @@
                 <tr>
                     <th scope="row">{{ $post->id }}</th>
                     <td>{{ $post->title }}</td>
+                    <td>{{ $post->user->name }}</td>
                     @if($post->category)
                     <td>{{ $post->category->label }}</td>
                     @else
