@@ -21,6 +21,14 @@
         @else
         <h5>categoria: Nessuna</h5>
         @endif
+        <div class="d-flex">
+            <h5 class="mr-1">Tags:</h5>
+            @forelse($post->tags as $tag)
+            <span>{{ $tag->label }}</span>
+            @empty
+            <span></span>
+            @endforelse
+        </div>
         <p>{{ $post->content }}</p>
         <hr>
     </div>

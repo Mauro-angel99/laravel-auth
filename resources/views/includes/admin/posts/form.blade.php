@@ -10,7 +10,7 @@
                 <label for="title">Titolo</label>
                 <input type="text" id="title" name="title" class="form-control" value="{{ $post->title }}" required>
             </div>
-            <div>
+            <div class="col-4 mb-3">
                 <label for="category_id">Categoria</label>
                 <select class="custom-select" id="category_id" name="category_id">
                     <option value="">Nessuna categoria</option>
@@ -30,4 +30,16 @@
                 <label for="image">Url immagine</label>
                 <input type="url" class="form-control" id="image" name="image" value="{{ $post->image }}" required>
             </div>
+            @if(count($tags))
+            <fieldset>
+                <h5>Tags</h5>
+                @foreach($tags as $tag)
+                <div class="form-check">
+                    <input type="checkbox" id="{{ $tag->label }}" class="form-check-input" name="tags[]"
+                        value="{{ $tag->id }}" @if(in_array($tag->id, $tag_ids ?? [])) checked @endif />
+                    <label for="{{ $tag->label }}" class="form-check-label">{{ $tag->label }}</label>
+                </div>
+                @endforeach
+            </fieldset>
+            @endif
         </div>

@@ -23,9 +23,10 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Titolo</th>
+                    <th scope="col">Slug</th>
                     <th scope="col">Autore</th>
                     <th scope="col">Categoria</th>
-                    <th scope="col">Slug</th>
+                    <th scope="col">Tag</th>
                     <th scope="col">Creato il</th>
                     <th scope="col">Modificato il</th>
                     <th scope="col">Opzioni</th>
@@ -36,13 +37,20 @@
                 <tr>
                     <th scope="row">{{ $post->id }}</th>
                     <td>{{ $post->title }}</td>
+                    <td>{{ $post->slug }}</td>
                     <td>{{ $post->user->name }}</td>
                     @if($post->category)
                     <td>{{ $post->category->label }}</td>
                     @else
                     <td></td>
                     @endif
-                    <td>{{ $post->slug }}</td>
+                    <td>
+                        @forelse($post->tags as $tag)
+                        <span>{{ $tag->label }}</span>
+                        @empty
+                        <span></span>
+                        @endforelse
+                    </td>
                     <td>{{ $post->created_at }}</td>
                     <td>{{ $post->updated_at }}</td>
                     <td class="d-flex justify-content-around">
