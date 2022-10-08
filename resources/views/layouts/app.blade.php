@@ -44,6 +44,10 @@
                             <a class="nav-link @if(Route::is('admin.posts.index')) @endif"
                                 href="{{ route('admin.posts.index') }}">Posts</a>
                         </li>
+                        <li>
+                            <a class="nav-link" href=" {{ route('admin.users.index') }}">Informazioni utenti
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -66,8 +70,6 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="nav-link" href=" {{ route('admin.users.index') }}">Informazioni utente
-                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
